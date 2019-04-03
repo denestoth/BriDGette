@@ -1,29 +1,51 @@
 package com.dnstth.bdcg.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 /**
  * Represents a card.
  *
  * @author Denes Toth
  */
+@Document(collection = "card")
 public class Card {
-    private final Suit suit;
-    private final Face face;
 
-    private Card(final Suit suit, final Face face) {
-        this.suit = suit;
-        this.face = face;
+    @Id
+    private String id;
+
+    @Field
+    private Suit suit;
+
+    @Field
+    private Face face;
+
+    public Card() {
     }
 
-    public static Card create(final Suit suit, final Face face) {
-        return new Card(suit, face);
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Suit getSuit() {
         return suit;
     }
 
+    public void setSuit(Suit suit) {
+        this.suit = suit;
+    }
+
     public Face getFace() {
         return face;
+    }
+
+    public void setFace(Face face) {
+        this.face = face;
     }
 
     public int getValue() {
