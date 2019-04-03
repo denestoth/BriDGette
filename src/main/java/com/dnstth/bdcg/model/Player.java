@@ -21,8 +21,7 @@ public class Player {
     @Field
     private List<Card> hand;
 
-    public Player()
-    {
+    public Player() {
         this.hand = new ArrayList<>();
     }
 
