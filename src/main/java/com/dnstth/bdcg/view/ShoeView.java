@@ -4,6 +4,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.List;
 
+/**
+ * Shoe view.
+ *
+ * @author Denes Toth
+ */
 @JsonDeserialize
 public class ShoeView {
 

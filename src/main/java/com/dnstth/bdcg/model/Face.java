@@ -1,7 +1,7 @@
 package com.dnstth.bdcg.model;
 
 /**
- * Represents faces.
+ * Represents card faces.
  *
  * @author Denes Toth
  */

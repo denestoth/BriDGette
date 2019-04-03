@@ -8,6 +8,11 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.io.IOException;
 
+/**
+ * MongoDB configuration.
+ *
+ * @author Denes Toth
+ */
 @Configuration
 public class MongoConfig {
     private static final String MONGO_DB_URL = "localhost";

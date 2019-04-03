@@ -2,6 +2,11 @@ package com.dnstth.bdcg.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Player controller.
+ *
+ * @author Denes Toth
+ */
 @RestController
 @RequestMapping("/api/v1")
 public class PlayerController {

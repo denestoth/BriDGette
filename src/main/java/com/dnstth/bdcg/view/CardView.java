@@ -4,6 +4,11 @@ import com.dnstth.bdcg.model.Face;
 import com.dnstth.bdcg.model.Suit;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+/**
+ * Card view.
+ *
+ * @author Denes Toth
+ */
 @JsonDeserialize
 public class CardView {
 

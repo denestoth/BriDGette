@@ -41,10 +41,20 @@ public class Player {
         this.hand = hand;
     }
 
+    /**
+     * Deals a card to player.
+     *
+     * @param card {@link Card}
+     */
     public void dealCard(final Card card) {
         this.hand.add(card);
     }
 
+    /**
+     * Computes total added value of player's hand.
+     *
+     * @return sum
+     */
     public int getHandValue() {
         int handValue = 0;
         for (Card card: hand) {

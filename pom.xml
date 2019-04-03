@@ -77,6 +77,8 @@
                 <version>${checkstyle-maven-plugin.version}</version>
                 <configuration>
                     <configLocation>${project.basedir}/checkstyle.xml</configLocation>
+                    <suppressionsLocation>${project.basedir}/suppressions.xml</suppressionsLocation>
+                    <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
                     <failOnViolation>true</failOnViolation>
                     <skip>false</skip>
                     <consoleOutput>true</consoleOutput>

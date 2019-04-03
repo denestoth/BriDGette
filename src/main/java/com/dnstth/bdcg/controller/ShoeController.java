@@ -3,6 +3,11 @@ package com.dnstth.bdcg.controller;
 import com.dnstth.bdcg.model.Deck;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Shoe (game deck) controller.
+ *
+ * @author Denes Toth
+ */
 @RestController
 @RequestMapping("/api/v1")
 public class ShoeController {

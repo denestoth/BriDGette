@@ -1,7 +1,7 @@
 package com.dnstth.bdcg.model;
 
 /**
- * Represents suites.
+ * Represents card suits.
  *
  * @author Denes Toth
  */
