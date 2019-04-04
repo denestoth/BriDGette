@@ -12,7 +12,7 @@ import java.util.List;
 public interface ShoeService {
     List<ShoeView> getShoes();
 
-    ShoeView getShoeById(final ShoeView shoeView);
+    ShoeView getShoeById(final String id);
 
     ShoeView addShoe(final ShoeView shoeView);
 
