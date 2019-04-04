@@ -51,4 +51,9 @@ public class Card {
     public int getValue() {
         return face.getValue();
     }
+
+    @Override
+    public String toString(){
+        return this.face.name() + " of " + this.suit.name();
+    }
 }

@@ -38,7 +38,7 @@ public class MongoCardService implements CardService {
     @Override
     public CardView getCardById(final String id) {
         Optional<Card> optionalCard = cardRepository.findById(id);
-        if (optionalCard.isEmpty()) {
+        if (!optionalCard.isPresent()) {
             // throw new EntityNotFoundException(Card.class, id);
         }
         return cardTransformer.transform(optionalCard.get());
@@ -55,7 +55,7 @@ public class MongoCardService implements CardService {
     @Override
     public CardView updateCard(final CardView cardView) {
         Optional<Card> optionalCard = cardRepository.findById(cardView.getId());
-        if (optionalCard.isEmpty()) {
+        if (!optionalCard.isPresent()) {
             // throw new EntityNotFoundException(Card.class, id);
         }
         Card card = optionalCard.get();

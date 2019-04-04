@@ -1,10 +1,9 @@
 package com.dnstth.bdcg.service.implementation;
 
-import com.dnstth.bdcg.model.Card;
 import com.dnstth.bdcg.model.Deck;
+import com.dnstth.bdcg.repository.CardRepository;
 import com.dnstth.bdcg.repository.DeckRepository;
 import com.dnstth.bdcg.service.DeckService;
-import com.dnstth.bdcg.service.transformer.CardTransformer;
 import com.dnstth.bdcg.service.transformer.DeckTransformer;
 import com.dnstth.bdcg.view.DeckView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,9 @@ public class MongoDeckService implements DeckService {
     @Autowired
     private DeckTransformer deckTransformer;
 
+    @Autowired
+    private CardRepository cardRepository;
+
     @Override
     public List<DeckView> getDecks() {
         return deckRepository
@@ -40,24 +42,24 @@ public class MongoDeckService implements DeckService {
     @Override
     public DeckView getDeckById(final String id) {
         Optional<Deck> optionalDeck = deckRepository.findById(id);
-        if (optionalDeck.isEmpty()) {
+        if (!optionalDeck.isPresent()) {
             // throw new EntityNotFoundException(Deck.class, id);
         }
         return deckTransformer.transform(optionalDeck.get());
     }
 
     @Override
-    public DeckView addDeck(final DeckView deckView) {
-        Deck deck = deckTransformer.transform(deckView);
+    public DeckView addDeck() {
+        Deck deck = new Deck();
+        deck.getCards().forEach(card -> cardRepository.save(card));
         deckRepository.save(deck);
-        deckView.setId(deck.getId());
-        return deckView;
+        return deckTransformer.transform(deck);
     }
 
     @Override
     public DeckView updateDeck(final DeckView deckView) {
         Optional<Deck> optionalDeck = deckRepository.findById(deckView.getId());
-        if (optionalDeck.isEmpty()) {
+        if (!optionalDeck.isPresent()) {
             // throw new EntityNotFoundException(Deck.class, id);
         }
         Deck deck = optionalDeck.get();

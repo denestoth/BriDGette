@@ -19,4 +19,10 @@ public interface ShoeService {
     ShoeView updateShoe(final ShoeView shoeView);
 
     void deleteShoe(final String id);
+
+    void addDeckToShoeById(final String gameId, final String deckId);
+
+    ShoeView shuffle(final String gameId);
+
+    String getUndealtCards(final String gameId);
 }

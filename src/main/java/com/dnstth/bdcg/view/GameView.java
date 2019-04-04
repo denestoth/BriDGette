@@ -1,7 +1,9 @@
 package com.dnstth.bdcg.view;
 
+import com.dnstth.bdcg.model.Deck;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,8 +15,8 @@ import java.util.List;
 public class GameView {
 
     private String id;
-    private List<PlayerView> players;
-    private ShoeView shoe;
+    private List<PlayerView> players  = new ArrayList<>();
+    private ShoeView shoe  = new ShoeView();
 
     public GameView() {
     }
@@ -41,5 +43,13 @@ public class GameView {
 
     public void setShoe(ShoeView shoe) {
         this.shoe = shoe;
+    }
+
+    public void addPlayer(final PlayerView playerView) {
+        this.players.add(playerView);
+    }
+
+    public void addDeckToShoe(final DeckView deck) {
+        this.shoe.addDeck(deck);
     }
 }

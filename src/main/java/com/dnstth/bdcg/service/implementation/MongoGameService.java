@@ -1,12 +1,9 @@
 package com.dnstth.bdcg.service.implementation;
 
 import com.dnstth.bdcg.model.Game;
-import com.dnstth.bdcg.model.Player;
 import com.dnstth.bdcg.repository.GameRepository;
 import com.dnstth.bdcg.service.GameService;
 import com.dnstth.bdcg.service.transformer.GameTransformer;
-import com.dnstth.bdcg.service.transformer.PlayerTransformer;
-import com.dnstth.bdcg.service.transformer.ShoeTransformer;
 import com.dnstth.bdcg.view.GameView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +38,7 @@ public class MongoGameService implements GameService {
     @Override
     public GameView getGameById(final String id) {
         Optional<Game> optionalGame = gameRepository.findById(id);
-        if (optionalGame.isEmpty()) {
+        if (!optionalGame.isPresent()) {
             // throw new EntityNotFoundException(Game.class, id);
         }
         return gameTransformer.transform(optionalGame.get());
@@ -58,13 +55,14 @@ public class MongoGameService implements GameService {
     @Override
     public GameView updateGame(final GameView gameView) {
         Optional<Game> optionalGame = gameRepository.findById(gameView.getId());
-        if (optionalGame.isEmpty()) {
+        if (!optionalGame.isPresent()) {
             // throw new EntityNotFoundException(Game.class, id);
         }
         Game game = optionalGame.get();
         Game tmpGame = gameTransformer.transform(gameView);
         game.setShoe(tmpGame.getShoe());
         game.setPlayers(tmpGame.getPlayers());
+        gameRepository.save(game);
         return gameView;
     }
 

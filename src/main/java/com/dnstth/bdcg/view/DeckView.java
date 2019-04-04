@@ -2,6 +2,7 @@ package com.dnstth.bdcg.view;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ public class DeckView {
     private List<CardView> cards;
 
     public DeckView() {
+        cards = new ArrayList<>();
     }
 
     public String getId() {

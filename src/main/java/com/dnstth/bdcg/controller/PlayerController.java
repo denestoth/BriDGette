@@ -1,6 +1,12 @@
 package com.dnstth.bdcg.controller;
 
+import com.dnstth.bdcg.service.PlayerService;
+import com.dnstth.bdcg.view.CardView;
+import com.dnstth.bdcg.view.PlayerView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Player controller.
@@ -11,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1")
 public class PlayerController {
 
+    @Autowired
+    private PlayerService playerService;
+
     /**
      * Get the list of players in a game along with the total added value of all the cards each
      * player holds.
@@ -18,8 +27,8 @@ public class PlayerController {
      * @param gameId game id
      */
     @GetMapping("/games/{gameId}/players")
-    void getPlayers(@PathVariable long gameId) {
-
+    public List<PlayerView> getPlayers(@PathVariable String gameId) {
+        return playerService.getPlayers(gameId);
     }
 
     /**
@@ -28,8 +37,8 @@ public class PlayerController {
      * @param gameId game id
      */
     @PostMapping("/games/{gameId}/players")
-    void addPlayer(@PathVariable long gameId) {
-
+    public PlayerView addPlayer(@PathVariable String gameId) {
+        return playerService.addPlayer(gameId);
     }
 
     /**
@@ -39,8 +48,8 @@ public class PlayerController {
      * @param playerId player id
      */
     @DeleteMapping("/games/{gameId}/players/{playerId}")
-    void deletePlayer(@PathVariable long gameId, @PathVariable long playerId) {
-
+    public void deletePlayer(@PathVariable String gameId, @PathVariable String playerId) {
+        playerService.deletePlayerById(playerId);
     }
 
     /**
@@ -51,8 +60,8 @@ public class PlayerController {
      * @param nrOfCards nr of cards to be dealt to the player
      */
     @PostMapping("/games/{gameId}/players/{playerId}")
-    void dealCard(@PathVariable long gameId, @PathVariable long playerId, @RequestBody int nrOfCards) {
-
+    public void dealCard(@PathVariable String gameId, @PathVariable String playerId, @RequestBody int nrOfCards) {
+        playerService.dealCardToPlayer(gameId, playerId, nrOfCards);
     }
 
     /**
@@ -62,7 +71,7 @@ public class PlayerController {
      * @param playerId player id
      */
     @GetMapping("/games/{gameId}/players/{playerId}/hand")
-    void getCards(@PathVariable long gameId, @PathVariable long playerId) {
-
+    public List<CardView> getCards(@PathVariable String gameId, @PathVariable String playerId) {
+        return playerService.getPlayerById(playerId).getHand();
     }
 }

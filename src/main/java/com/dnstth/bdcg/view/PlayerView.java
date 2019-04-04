@@ -2,6 +2,7 @@ package com.dnstth.bdcg.view;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
 public class PlayerView {
 
     private String id;
-    private List<CardView> hand;
+    private List<CardView> hand  = new ArrayList<>();
 
     public PlayerView() {
     }
@@ -32,5 +33,14 @@ public class PlayerView {
 
     public void setHand(List<CardView> hand) {
         this.hand = hand;
+    }
+
+    /**
+     * Deals a card to player.
+     *
+     * @param card {@link CardView}
+     */
+    public void dealCard(final CardView card) {
+        this.hand.add(card);
     }
 }

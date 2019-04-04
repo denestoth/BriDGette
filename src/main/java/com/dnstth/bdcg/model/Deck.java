@@ -22,19 +22,10 @@ public class Deck {
     @Field
     private List<Card> cards;
 
-    public Deck() {
-    }
-
-    private Deck(final List<Card> cards) {
-        this.cards = cards;
-    }
-
     /**
-     * Creates deck.
-     *
-     * @return {@link Deck}
+     * Constructor.
      */
-    public static Deck create() {
+    public Deck() {
         List<Card> cards = new ArrayList<>();
 
         for (Suit suit : Suit.values()) {
@@ -46,9 +37,11 @@ public class Deck {
             }
         }
 
-        cards = CardHelper.shuffle(cards);
+        this.cards = CardHelper.shuffle(cards);
+    }
 
-        return new Deck(cards);
+    private Deck(final List<Card> cards) {
+        this.cards = cards;
     }
 
     public String getId() {

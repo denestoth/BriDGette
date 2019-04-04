@@ -19,10 +19,9 @@ public class Shoe {
     private String id;
 
     @Field
-    private List<Card> cards;
+    private List<Card> cards  = new ArrayList<>();
 
     public Shoe() {
-        this.cards = new ArrayList<>();
     }
 
     public String getId() {
@@ -39,9 +38,5 @@ public class Shoe {
 
     public void setCards(final List<Card> cards) {
         this.cards = cards;
-    }
-
-    public void addDeck(final Deck deck) {
-        this.cards.addAll(deck.getCards());
     }
 }

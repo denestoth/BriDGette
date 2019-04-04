@@ -1,6 +1,7 @@
 package com.dnstth.bdcg.controller;
 
-import com.dnstth.bdcg.model.Deck;
+import com.dnstth.bdcg.service.ShoeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -12,25 +13,28 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1")
 public class ShoeController {
 
+    @Autowired
+    private ShoeService shoeService;
+
     /**
      * Get count of how many cards per suit are left undealt in the game deck.
      *
      * @param gameId game id
      */
     @GetMapping("/games/{gameId}/shoe")
-    void getNumberOfUndealtCardsPerSuit(@PathVariable long gameId) {
-
+    public String getNumberOfUndealtCardsPerSuit(@PathVariable String gameId) {
+        return shoeService.getUndealtCards(gameId);
     }
 
     /**
      * Add deck to a shoe.
      *
      * @param gameId game id
-     * @param deck deck to be added to shoe
+     * @param deckId id of deck to be added to shoe
      */
     @PatchMapping("/games/{gameId}/shoe")
-    void addDeckToShoe(@PathVariable long gameId, @RequestBody Deck deck) {
-
+    public void addDeckToShoe(@PathVariable String gameId, @RequestBody String deckId) {
+        shoeService.addDeckToShoeById(gameId, deckId);
     }
 
     /**
@@ -40,7 +44,7 @@ public class ShoeController {
      * @param gameId game id
      */
     @GetMapping("/games/{gameId}/shoe/cardCount")
-    void getCardCount(@PathVariable long gameId) {
+    public void getCardCount(@PathVariable String gameId) {
 
     }
 
@@ -50,7 +54,7 @@ public class ShoeController {
      * @param gameId game id
      */
     @GetMapping("games/{gameId}/shoe/shuffle")
-    void shuffle(@PathVariable long gameId) {
-
+    public void shuffle(@PathVariable String gameId) {
+        shoeService.shuffle(gameId);
     }
 }

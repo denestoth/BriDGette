@@ -14,7 +14,7 @@ public interface DeckService {
 
     DeckView getDeckById(final String id);
 
-    DeckView addDeck(final DeckView deckView);
+    DeckView addDeck();
 
     DeckView updateDeck(final DeckView deckView);
 

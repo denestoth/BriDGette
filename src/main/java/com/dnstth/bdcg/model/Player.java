@@ -1,6 +1,8 @@
 package com.dnstth.bdcg.model;
 
+import org.springframework.data.annotation.AccessType;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -19,10 +21,9 @@ public class Player {
     private String id;
 
     @Field
-    private List<Card> hand;
+    private List<Card> hand  = new ArrayList<>();
 
     public Player() {
-        this.hand = new ArrayList<>();
     }
 
     public String getId() {
@@ -39,15 +40,6 @@ public class Player {
 
     public void setHand(List<Card> hand) {
         this.hand = hand;
-    }
-
-    /**
-     * Deals a card to player.
-     *
-     * @param card {@link Card}
-     */
-    public void dealCard(final Card card) {
-        this.hand.add(card);
     }
 
     /**

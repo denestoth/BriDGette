@@ -1,6 +1,8 @@
 package com.dnstth.bdcg.model;
 
+import org.springframework.data.annotation.AccessType;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -19,14 +21,13 @@ public class Game {
     private String id;
 
     @Field
-    private List<Player> players;
+    @DBRef
+    private List<Player> players  = new ArrayList<>();
 
     @Field
-    private Shoe shoe;
+    private Shoe shoe = new Shoe();
 
     public Game() {
-        players = new ArrayList<>();
-        shoe = new Shoe();
     }
 
     public String getId() {
@@ -43,10 +44,6 @@ public class Game {
 
     public void removePlayer(final Player player) {
         this.players.remove(player);
-    }
-
-    public void addDeckToShoe(final Deck deck) {
-        this.shoe.addDeck(deck);
     }
 
     public List<Player> getPlayers() {
