@@ -1,6 +1,8 @@
-# bdcg
+# BriDGette
 
-bdcg (Basic Deck Card Game) requires java 11, maven and was made with spring boot
+BriDGette - Basic Deck ard Game 
+
+requires java 11, maven and was made with spring boot
 
 to start it run "mvn spring-boot:run" in application root directory
 
