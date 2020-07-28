@@ -1,6 +1,6 @@
 # BriDGette
 
-BriDGette - Basic Deck ard Game 
+BriDGette - Basic Deck card Game 
 
 requires java 11, maven and was made with spring boot
 
